@@ -1,12 +1,14 @@
 import type { GroupedWebApiObject, WebApiItem } from '@/types/scrape';
 
 export function groupedByFirstLetter(items: WebApiItem[]): GroupedWebApiObject {
-  return items.reduce((acc, item) => {
-    const firstLetter = item.id.slice(0, 1);
-    if (!acc[firstLetter]) {
-      acc[firstLetter] = [];
-    }
-    acc[firstLetter].push(item);
-    return acc;
-  }, {} as GroupedWebApiObject);
+  return items
+    .sort((a, b) => a.id.localeCompare(b.id))
+    .reduce((acc, item) => {
+      const firstLetter = item.id.slice(0, 1);
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = [];
+      }
+      acc[firstLetter].push(item);
+      return acc;
+    }, {} as GroupedWebApiObject);
 }
