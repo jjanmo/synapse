@@ -25,7 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const aText = $(li).children('a').text().trim();
           const aLink = $(li).children('a').attr('href')?.trim();
           if (aText && aLink) {
-            webApiList.push({ title: aText, url: aLink });
+            const id = aLink.split('/').pop() ?? '';
+            webApiList.push({ id, title: aText, url: aLink });
           }
         });
     });

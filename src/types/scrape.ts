@@ -1,4 +1,5 @@
 export type WebApiItem = {
+  id: string;
   title: string;
   url: string;
 };
