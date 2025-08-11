@@ -20,18 +20,22 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
+    <main className={styles.container}>
+      <h1 className={styles.title}>Web API 목록</h1>
       <ul className={styles.list}>
-        {Object.entries(groupedWebApiObject ?? {}).map(([key, value]) => (
-          <li key={key}>
-            <h2>{key}</h2>
-            <ul>
-              {value.map((item) => (
-                <li key={item.url}>{item.title}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
+        {Object.entries(groupedWebApiObject ?? {}).map(([firstLetter, webApiItems]) => {
+          const firstWebApiText = webApiItems[0].title;
+          const count = webApiItems.length;
+          return (
+            <li className={styles.item} key={firstLetter}>
+              <div className={styles.firstLetter}>{firstLetter}</div>
+              <div className={styles.firstItemText}>
+                <span>{firstWebApiText}</span>
+                {count > 1 && ` 외 ${count - 1}개`}
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </main>
   );
