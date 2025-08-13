@@ -16,4 +16,10 @@
 - `Synapse` 란
 
   자바스크립트와 브라우저가 Web API를 통해 신호를 주고받는 모습을 마치 뇌 속의 뉴런들이 시냅스를 통해 정보를 전달하는 모습에 비유하여 지은 이름이다.
+
+- with ref
+
+  - [프론트엔드 개발의 Kick, Web API (feat. React)](https://www.inflearn.com/course/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EA%B0%9C%EB%B0%9C-kick-webapi-react/)
+  - [알고 있으면 너무 좋은 프론트엔드 웹 기술](https://www.youtube.com/playlist?list=PLe6NQuuFBu7EgOm0n1l-qzn1hDBG5AW8_)
+
   </details>
