@@ -17,7 +17,7 @@ interface Props {
 const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }) => {
   const dialogRef = useRef<Nullable<HTMLDialogElement>>(null);
 
-  // isOpen 상태와 dialog 모달 상태 동기화
+  /** isOpen 상태와 dialog 모달 상태 동기화 */
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -30,21 +30,22 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
     }
   }, [isOpen]);
 
-  // esc로 닫을 때 상태 동기화
+  /** esc로 닫을 때 상태 동기화 */
   useEffect(() => {
-    // const dialog = dialogRef.current;
-    // if (!dialog) return;
-    // const handleCancel = (event: Event) => {
-    //   event.preventDefault();
-    //   // onCloseModal();
-    // };
-    // dialog.addEventListener('cancel', handleCancel);
-    // return () => {
-    //   dialog.removeEventListener('cancel', handleCancel);
-    // };
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleCancel = (event: Event) => {
+      event.preventDefault();
+      onCloseModal();
+    };
+    dialog.addEventListener('cancel', handleCancel);
+    return () => {
+      dialog.removeEventListener('cancel', handleCancel);
+    };
   }, [onCloseModal]);
 
-  // overlay 클릭 시 닫기
+  /** overlay 클릭 시 닫기 */
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog || !closeOnOverlayClick) return;

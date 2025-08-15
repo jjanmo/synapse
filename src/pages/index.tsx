@@ -3,7 +3,7 @@ import styles from '@/styles/home.module.css';
 import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
-import WebApiModal from '@/components/home/WebApiModal';
+import WebApiModal from '@/components/WebApiModal';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 
@@ -44,7 +44,7 @@ const Home: FC = () => {
         <WebApiModal
           webApiList={groupedWebApis[selectedWebApiKey]}
           isOpen={!!selectedWebApiKey}
-          title={selectedWebApiKey ?? ''}
+          title={selectedWebApiKey}
           onCloseModal={handleCloseModal}
         />
       )}
