@@ -1,6 +1,6 @@
-import type { GroupedWebApiObject, WebApiItem } from '@/types/scrape';
+import type { GroupedWebApis, WebApiItem } from '@/types/scrape';
 
-export function groupedByFirstLetter(items: WebApiItem[]): GroupedWebApiObject {
+export function groupedByFirstLetter(items: WebApiItem[]): GroupedWebApis {
   return items
     .sort((a, b) => a.id.localeCompare(b.id))
     .reduce((acc, item) => {
@@ -10,5 +10,5 @@ export function groupedByFirstLetter(items: WebApiItem[]): GroupedWebApiObject {
       }
       acc[firstLetter].push(item);
       return acc;
-    }, {} as GroupedWebApiObject);
+    }, {} as GroupedWebApis);
 }

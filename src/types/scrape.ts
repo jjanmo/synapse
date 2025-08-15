@@ -4,6 +4,6 @@ export type WebApiItem = {
   url: string;
 };
 
-export type GroupedWebApiObject = {
+export type GroupedWebApis = {
   [key: string]: WebApiItem[];
 };
