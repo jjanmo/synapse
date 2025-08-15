@@ -1,87 +1,101 @@
 import type { WebApiItem } from '@/types/scrape';
 import { useEffect, useRef, type FC } from 'react';
+import styles from '@/styles/modal.module.css';
+import { File, X, Link as LinkIcon } from 'lucide-react';
+import Link from 'next/link';
+import type { Nullable } from '@/types/common';
 
 interface Props {
+  title: string;
   webApiList: WebApiItem[];
   isOpen: boolean;
-  title: string;
-  onClose: () => void;
-  closeOnBackdropClick?: boolean;
+  onCloseModal: VoidFunction;
+  /** default: true */
+  closeOnOverlayClick?: boolean;
 }
 
-const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onClose, closeOnBackdropClick = true }) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }) => {
+  const dialogRef = useRef<Nullable<HTMLDialogElement>>(null);
 
+  // isOpen 상태와 dialog 모달 상태 동기화
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    // isOpen 상태와 실제 <dialog> 모달 상태 동기화
     if (isOpen && !dialog.open) {
-      try {
-        dialog.showModal();
-      } catch {
-        // 이미 열린 상태에서 showModal 호출 시 에러 방지
-      }
+      dialog.showModal();
     }
     if (!isOpen && dialog.open) {
       dialog.close();
     }
   }, [isOpen]);
 
+  // esc로 닫을 때 상태 동기화
+  useEffect(() => {
+    // const dialog = dialogRef.current;
+    // if (!dialog) return;
+    // const handleCancel = (event: Event) => {
+    //   event.preventDefault();
+    //   // onCloseModal();
+    // };
+    // dialog.addEventListener('cancel', handleCancel);
+    // return () => {
+    //   dialog.removeEventListener('cancel', handleCancel);
+    // };
+  }, [onCloseModal]);
+
+  // overlay 클릭 시 닫기
   useEffect(() => {
     const dialog = dialogRef.current;
-    if (!dialog) return;
+    if (!dialog || !closeOnOverlayClick) return;
 
-    const handleCancel = (event: Event) => {
-      event.preventDefault();
-      onClose();
-    };
-
-    dialog.addEventListener('cancel', handleCancel);
-    return () => {
-      dialog.removeEventListener('cancel', handleCancel);
-    };
-  }, [onClose]);
-
-  // 백드롭(overlay) 클릭 시 닫기
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog || !closeOnBackdropClick) return;
-
-    const handleClick = (event: MouseEvent) => {
+    const handleOverlayClick = (event: MouseEvent) => {
       const rect = dialog.getBoundingClientRect();
-      const clickedInsideDialog =
+      const clickedDialogInside =
         event.clientX >= rect.left &&
         event.clientX <= rect.right &&
         event.clientY >= rect.top &&
         event.clientY <= rect.bottom;
-      if (!clickedInsideDialog) {
-        onClose();
+
+      const clickedOverlay = !clickedDialogInside;
+      if (clickedOverlay) {
+        onCloseModal();
       }
     };
 
-    dialog.addEventListener('click', handleClick);
+    dialog.addEventListener('click', handleOverlayClick);
     return () => {
-      dialog.removeEventListener('click', handleClick);
+      dialog.removeEventListener('click', handleOverlayClick);
     };
-  }, [onClose, closeOnBackdropClick]);
+  }, [onCloseModal, closeOnOverlayClick]);
 
   return (
-    <dialog ref={dialogRef} aria-labelledby="webapi-modal-title">
-      <div>
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 id="webapi-modal-title">{title}</h3>
-          <button type="button" onClick={onClose}>
-            닫기
-          </button>
-        </header>
-        <ul>
-          {webApiList.map((webApi) => (
-            <li key={webApi.id}>{webApi.title}</li>
-          ))}
-        </ul>
-      </div>
+    <dialog ref={dialogRef} aria-labelledby="webapi-modal-title" className={styles.dialog}>
+      <header className={styles.header}>
+        <h3 id="webapi-modal-title" className={styles.title}>
+          {title}
+        </h3>
+        <button type="button" onClick={onCloseModal} className={styles.closeButton}>
+          <X size={24} />
+        </button>
+      </header>
+      <ul>
+        {webApiList.map(({ id, title, url }) => {
+          return (
+            <li key={id} className={styles.item}>
+              <div className={styles.title}>{title}</div>
+              <div className={styles.linksContainer}>
+                <Link title="MDN" href={`https://developer.mozilla.org${url}`} target="_blank">
+                  <File size={16} />
+                </Link>
+                <Link href={`/web-api/${id}`} target="_blank">
+                  <LinkIcon size={16} />
+                </Link>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </dialog>
   );
 };
