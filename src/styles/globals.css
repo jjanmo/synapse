@@ -109,6 +109,7 @@ section {
 }
 body {
   line-height: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans';
 }
 ol,
 ul {
