@@ -4,6 +4,7 @@ import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
 import WebApiModal from '@/components/WebApiModal';
+import Image from 'next/image';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 
@@ -21,7 +22,13 @@ const Home: FC = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Web API 목록</h1>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.title}>
+          Synapse
+          <Image src="/logo.png" alt="Web API" width={60} height={60} />
+        </h1>
+        <h2>Web API</h2>
+      </div>
       <ul className={styles.list}>
         {isPending && <Loading overrideStyle={styles.loading} />}
         {groupedWebApis &&
