@@ -1,15 +1,16 @@
 .main {
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .container {
   position: relative;
   height: 100%;
-  padding: 48px 0 32px;
+  padding: 32px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 80px;
 }
 
 .list {
@@ -18,8 +19,6 @@
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
-  width: 896px;
-  height: 100%;
   margin: 0 auto;
 }
 
