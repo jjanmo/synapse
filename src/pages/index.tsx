@@ -4,7 +4,7 @@ import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
 import WebApiModal from '@/components/WebApiModal';
-import Image from 'next/image';
+import Introduction from '@/components/Introduction';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 
@@ -21,32 +21,28 @@ const Home: FC = () => {
   };
 
   return (
-    <main className={styles.container}>
-      <div className={styles.titleContainer}>
-        <h1 className={styles.title}>
-          Synapse
-          <Image src="/logo.png" alt="Web API" width={60} height={60} />
-        </h1>
-        <h2>Web API</h2>
-      </div>
-      <ul className={styles.list}>
-        {isPending && <Loading overrideStyle={styles.loading} />}
-        {groupedWebApis &&
-          Object.entries(groupedWebApis).map(([firstLetter, webApiItems]) => {
-            const firstWebApiText = webApiItems[0].title;
-            const count = webApiItems.length;
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <Introduction />
+        <ul className={styles.list}>
+          {isPending && <Loading overrideStyle={styles.loading} />}
+          {groupedWebApis &&
+            Object.entries(groupedWebApis).map(([firstLetter, webApiItems]) => {
+              const firstWebApiText = webApiItems[0].title;
+              const count = webApiItems.length;
 
-            return (
-              <li className={styles.item} key={firstLetter} onClick={handleWebApiClick(firstLetter)}>
-                <div className={styles.firstLetter}>{firstLetter}</div>
-                <div className={styles.firstItemText}>
-                  <span>{firstWebApiText}</span>
-                  {count > 1 && ` 외 ${count - 1}개`}
-                </div>
-              </li>
-            );
-          })}
-      </ul>
+              return (
+                <li className={styles.item} key={firstLetter} onClick={handleWebApiClick(firstLetter)}>
+                  <div className={styles.firstLetter}>{firstLetter}</div>
+                  <div className={styles.firstItemText}>
+                    <span>{firstWebApiText}</span>
+                    {count > 1 && ` 외 ${count - 1}개`}
+                  </div>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
       {groupedWebApis && selectedWebApiKey && (
         <WebApiModal
           webApiList={groupedWebApis[selectedWebApiKey]}

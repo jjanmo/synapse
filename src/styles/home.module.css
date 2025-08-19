@@ -1,26 +1,15 @@
-.container {
-  position: relative;
+.main {
   height: 100vh;
-  background-color: #dff9fb;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.titleContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
+.container {
+  position: relative;
+  height: 100%;
+  padding: 48px 0 32px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 32px;
-  font-weight: bold;
+  justify-content: space-between;
 }
 
 .list {
