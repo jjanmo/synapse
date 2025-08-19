@@ -30,6 +30,7 @@
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: all 0.3s ease;
 
   .firstLetter {
     margin-bottom: 4px;
@@ -45,4 +46,8 @@
       color: #95afc0;
     }
   }
+}
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }

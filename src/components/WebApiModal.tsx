@@ -17,6 +17,14 @@ interface Props {
 const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }) => {
   const dialogRef = useRef<Nullable<HTMLDialogElement>>(null);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   /** isOpen 상태와 dialog 모달 상태 동기화 */
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -89,7 +97,7 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
                 <Link title="MDN" href={`https://developer.mozilla.org${url}`} target="_blank">
                   <File size={16} />
                 </Link>
-                <Link href={`/web-api/${id}`} target="_blank">
+                <Link href={`/web-apis/${id}`}>
                   <LinkIcon size={16} />
                 </Link>
               </div>
