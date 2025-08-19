@@ -1,7 +1,7 @@
 import type { WebApiItem } from '@/types/scrape';
 import { useEffect, useRef, type FC } from 'react';
 import styles from '@/styles/modal.module.css';
-import { File, X, Link as LinkIcon } from 'lucide-react';
+import { File, X, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { Nullable } from '@/types/common';
 
@@ -98,7 +98,7 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
                   <File size={16} />
                 </Link>
                 <Link href={`/web-apis/${id}`}>
-                  <LinkIcon size={16} />
+                  <ChevronRight size={24} />
                 </Link>
               </div>
             </li>

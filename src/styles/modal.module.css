@@ -53,7 +53,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+  padding: 12px 16px;
   border-bottom: 1px solid #eee;
 
   .linksContainer {
@@ -61,17 +61,15 @@
     gap: 8px;
 
     a {
-      padding: 6px;
       border: none;
       outline: none;
       display: flex;
       align-items: center;
       background-color: transparent;
-      transition: background-color 0.2s ease-in-out;
+      transition: color 0.2s ease-in-out;
     }
     a:hover {
-      background-color: #f1f2f6;
-      border-radius: 4px;
+      color: #667eea;
     }
   }
 }
