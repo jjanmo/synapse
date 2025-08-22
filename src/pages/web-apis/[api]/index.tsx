@@ -1,11 +1,8 @@
 import type { FC } from 'react';
+import Example from '@/components/timer/Example';
 
 const WebApiPage: FC = () => {
-  return (
-    <div>
-      <h1>Web API</h1>
-    </div>
-  );
+  return <Example />;
 };
 
 export default WebApiPage;
