@@ -1,5 +1,6 @@
 import styles from '@/styles/timer.module.css';
 import type { Dot } from '@/types/timer';
+import { useCallback, useEffect, useRef } from 'react';
 
 const DOTS_TEXT = 'ABCDEJIHGF';
 const LINE_ORDER = 'ABCDEFGHIJ';
@@ -47,6 +48,35 @@ const generateLines = (dots: Dot[]) => {
 const Example = () => {
   const dots = generateDotPositions();
   const lines = generateLines(dots);
+  const lineRefs = useRef<SVGLineElement[]>([]);
+  const intervalIds = useRef<NodeJS.Timeout[]>([]);
+
+  const setLineRef = useCallback((index: number) => {
+    return (el: SVGLineElement) => {
+      if (el) {
+        lineRefs.current[index] = el;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const allRefsReady = lineRefs.current.length === lines.length && lineRefs.current.every(Boolean);
+    if (!allRefsReady) return;
+
+    lineRefs.current.forEach((line, index) => {
+      if (line) {
+        const intervalId = setTimeout(() => {
+          line.style.stroke = 'black';
+        }, 1000 * index);
+        intervalIds.current.push(intervalId);
+      }
+    });
+
+    return () => {
+      intervalIds.current.forEach((intervalId) => clearTimeout(intervalId));
+      intervalIds.current = [];
+    };
+  }, [lines.length]);
 
   return (
     <div className={styles.container}>
@@ -64,7 +94,18 @@ const Example = () => {
         })}
         {lines.map((line, index) => {
           const { startX, startY, endX, endY } = line;
-          return <line key={index} x1={startX} y1={startY} x2={endX} y2={endY} stroke="black" strokeWidth="1" />;
+          return (
+            <line
+              ref={setLineRef(index)}
+              key={index}
+              x1={startX}
+              y1={startY}
+              x2={endX}
+              y2={endY}
+              stroke="transparent"
+              strokeWidth="1"
+            />
+          );
         })}
       </svg>
     </div>
