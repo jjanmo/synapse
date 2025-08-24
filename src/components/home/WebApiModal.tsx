@@ -1,6 +1,6 @@
 import type { WebApiItem } from '@/types/scrape';
 import { useEffect, useRef, type FC } from 'react';
-import styles from '@/styles/modal.module.css';
+import styles from '@/styles/components/modal.module.css';
 import { File, X, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { Nullable } from '@/types/common';

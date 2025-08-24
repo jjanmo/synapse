@@ -16,7 +16,7 @@ const WebApiPage: FC = () => {
   return (
     <main className={styles.main}>
       <h1>Timer</h1>
-      <Tabs onTab1Click={handleTab1Click} onTab2Click={handleTab2Click} />
+      <Tabs currentTab={tab} onTab1Click={handleTab1Click} onTab2Click={handleTab2Click} />
       {tab === 'description' && <div>description</div>}
       {tab === 'example' && <Example />}
     </main>
