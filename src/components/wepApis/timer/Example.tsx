@@ -1,4 +1,4 @@
-import styles from '@/styles/timer.module.css';
+import styles from '@/styles/components/timer.module.css';
 import type { Dot } from '@/types/timer';
 import { useCallback, useEffect, useRef } from 'react';
 

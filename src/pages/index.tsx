@@ -1,5 +1,5 @@
 import { useState, type FC } from 'react';
-import styles from '@/styles/home.module.css';
+import styles from '@/styles/pages/home.module.css';
 import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';

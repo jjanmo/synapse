@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import Image from 'next/image';
-import styles from '@/styles/introduction.module.css';
+import styles from '@/styles/components/introduction.module.css';
 
 const Introduction: FC = () => {
   return (

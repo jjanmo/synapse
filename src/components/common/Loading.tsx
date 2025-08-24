@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import styles from '@/styles/loading.module.css';
+import styles from '@/styles/components/loading.module.css';
 import { cn } from '@/utils/styles';
 
 interface Props {
