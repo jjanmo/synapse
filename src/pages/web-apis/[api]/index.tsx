@@ -1,6 +1,6 @@
 import { useState, type FC } from 'react';
-import Example from '@/components/wepApis/timer/Example';
-import Tabs from '@/components/wepApis/Tabs';
+import Example from '@/components/webApis/timer/Example';
+import Tabs from '@/components/common/Tabs';
 import styles from '@/styles/pages/webapiDetail.module.css';
 
 const WebApiPage: FC = () => {
