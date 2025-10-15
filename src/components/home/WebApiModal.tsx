@@ -1,13 +1,13 @@
-import type { WebApiItem } from '@/types/scrape';
+import type { ScrapedWebApiItem } from '@/types/webapis';
 import { useEffect, useRef, type FC } from 'react';
 import styles from '@/styles/components/modal.module.css';
-import { File, X, ChevronRight } from 'lucide-react';
+import { File, X } from 'lucide-react';
 import Link from 'next/link';
 import type { Nullable } from '@/types/common';
 
 interface Props {
   title: string;
-  webApiList: WebApiItem[];
+  webApiList: ScrapedWebApiItem[];
   isOpen: boolean;
   onCloseModal: VoidFunction;
   /** default: true */
@@ -97,9 +97,10 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
                 <Link title="MDN" href={`https://developer.mozilla.org${url}`} target="_blank">
                   <File size={16} />
                 </Link>
-                <Link href={`/web-apis/${id}`}>
+                {/* @TODO: 나중에 추가 */}
+                {/* <Link href={`/web-apis/${id}`}>
                   <ChevronRight size={24} />
-                </Link>
+                </Link> */}
               </div>
             </li>
           );

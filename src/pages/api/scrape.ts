@@ -1,4 +1,4 @@
-import type { WebApiItem } from '@/types/scrape';
+import type { ScrapedWebApiItem } from '@/types/webapis';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { url } = req.query;
 
-  const webApiList: WebApiItem[] = [];
+  const webApiList: ScrapedWebApiItem[] = [];
 
   try {
     if (!url) return res.status(400).json({ error: 'url 쿼리가 필요합니다.' });

@@ -1,6 +1,6 @@
-import type { WebApiItem } from '@/types/scrape';
+import type { ScrapedWebApiItem } from '@/types/webapis';
 import { axiosInstance } from '.';
 
 export const getWebApiList = async (url: string) => {
-  return axiosInstance.get<{ webApiList: WebApiItem[] }>(`/api/scrape?url=${url}`);
+  return axiosInstance.get<{ webApiList: ScrapedWebApiItem[] }>(`/api/scrape?url=${url}`);
 };
