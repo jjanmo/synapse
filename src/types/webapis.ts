@@ -11,6 +11,7 @@ export type GroupedScrapedWebApis = {
 /** 커스터마이징(하드코딩)을 한 WebAPI 아이템 타입 */
 export interface WebApiItem {
   title: string;
-  group: 'api' | 'interface';
   slug: string;
+  group: 'api' | 'interface';
+  keywords?: string[];
 }

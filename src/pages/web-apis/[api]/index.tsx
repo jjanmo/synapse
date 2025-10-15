@@ -6,9 +6,10 @@ import Example from '@/components/webApis/timer/Example';
 import Tabs from '@/components/common/Tabs';
 import MarkdownRenderer from '@/components/common/MarkdownRenderer';
 import styles from '@/styles/pages/webapiDetail.module.css';
+import { WEB_API_LIST } from '@/constants/home';
 
 interface Props {
-  markdownContent: string;
+  markdownContent?: string;
 }
 
 const WebApiPage: FC<Props> = ({ markdownContent }) => {
@@ -23,26 +24,27 @@ const WebApiPage: FC<Props> = ({ markdownContent }) => {
 
   return (
     <main className={styles.main}>
-      <h1>Timer</h1>
       <Tabs currentTab={tab} onTab1Click={handleTab1Click} onTab2Click={handleTab2Click} />
-      {tab === 'description' && <MarkdownRenderer content={markdownContent} />}
+      {tab === 'description' && markdownContent && <MarkdownRenderer content={markdownContent} />}
       {tab === 'example' && <Example />}
     </main>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = WEB_API_LIST.map((webApi) => ({ params: { api: webApi.slug } }));
+
   return {
-    paths: [{ params: { api: 'timer' } }],
-    fallback: false,
+    paths,
+    fallback: false, // false인 경우 허용되지 않은 주소로 접근시 404 페이지 반환
   };
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const api = params?.api as string;
+  const apiSlug = params?.api as string;
 
   try {
-    const contentFilePath = path.join(process.cwd(), 'content', 'web-apis', `${api}.md`);
+    const contentFilePath = path.join(process.cwd(), 'content', 'web-apis', `${apiSlug}.md`);
     const markdownContent = fs.readFileSync(contentFilePath, 'utf8');
 
     return {
