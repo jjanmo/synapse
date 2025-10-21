@@ -10,8 +10,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
-        <GlobalNavigationBar />
-        <Component {...pageProps} />
+        <header>
+          <GlobalNavigationBar />
+        </header>
+        <main>
+          <Component {...pageProps} />
+        </main>
       </HydrationBoundary>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
