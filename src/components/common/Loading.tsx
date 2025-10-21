@@ -1,12 +1,11 @@
-import type { FC } from 'react';
-import styles from '@/styles/components/loading.module.css';
-import { cn } from '@/utils/styles';
+import styles from "@/styles/components/loading.module.css";
+import { cn } from "@/utils/styles";
 
 interface Props {
   overrideStyle?: string;
 }
 
-const Loading: FC<Props> = ({ overrideStyle }) => {
+const Loading = ({ overrideStyle }: Props) => {
   return (
     <div className={cn(styles.loadingContainer, overrideStyle)}>
       <svg

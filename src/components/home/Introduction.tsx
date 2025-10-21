@@ -1,8 +1,7 @@
-import type { FC } from 'react';
-import Image from 'next/image';
-import styles from '@/styles/components/introduction.module.css';
+import Image from "next/image";
+import styles from "@/styles/components/introduction.module.css";
 
-const Introduction: FC = () => {
+const Introduction = () => {
   return (
     <header className={styles.container}>
       <div className={styles.logoWrapper}>

@@ -1,9 +1,9 @@
-import type { ScrapedWebApiItem } from '@/types/webapis';
-import { useEffect, useRef, type FC } from 'react';
-import styles from '@/styles/components/modal.module.css';
-import { File, X } from 'lucide-react';
-import Link from 'next/link';
-import type { Nullable } from '@/types/common';
+import type { ScrapedWebApiItem } from "@/types/webapis";
+import { useEffect, useRef } from "react";
+import styles from "@/styles/components/modal.module.css";
+import { File, X } from "lucide-react";
+import Link from "next/link";
+import type { Nullable } from "@/types/common";
 
 interface Props {
   title: string;
@@ -14,14 +14,14 @@ interface Props {
   closeOnOverlayClick?: boolean;
 }
 
-const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }) => {
+const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }: Props) => {
   const dialogRef = useRef<Nullable<HTMLDialogElement>>(null);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, []);
 
@@ -47,9 +47,9 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
       event.preventDefault();
       onCloseModal();
     };
-    dialog.addEventListener('cancel', handleCancel);
+    dialog.addEventListener("cancel", handleCancel);
     return () => {
-      dialog.removeEventListener('cancel', handleCancel);
+      dialog.removeEventListener("cancel", handleCancel);
     };
   }, [onCloseModal]);
 
@@ -72,9 +72,9 @@ const WebApiModal: FC<Props> = ({ webApiList, isOpen, title, onCloseModal, close
       }
     };
 
-    dialog.addEventListener('click', handleOverlayClick);
+    dialog.addEventListener("click", handleOverlayClick);
     return () => {
-      dialog.removeEventListener('click', handleOverlayClick);
+      dialog.removeEventListener("click", handleOverlayClick);
     };
   }, [onCloseModal, closeOnOverlayClick]);
 
