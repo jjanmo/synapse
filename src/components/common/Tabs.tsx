@@ -10,10 +10,10 @@ const Tabs = ({ currentTab, onTab1Click, onTab2Click }: Props) => {
   return (
     <div className={styles.container}>
       <button className={cn(styles.button, currentTab === "description" && styles.active)} onClick={onTab1Click}>
-        설명
+        Description
       </button>
       <button className={cn(styles.button, currentTab === "example" && styles.active)} onClick={onTab2Click}>
-        예시
+        Example
       </button>
     </div>
   );
