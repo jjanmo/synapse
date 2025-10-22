@@ -9,7 +9,7 @@ const Home = () => {
 
         return (
           <li key={slug}>
-            <Link href={`/web-apis/${slug}`}>{title}</Link>
+            <Link href={`/${slug}`}>{title}</Link>
           </li>
         );
       })}

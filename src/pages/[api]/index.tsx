@@ -1,7 +1,7 @@
 import type { GetStaticProps, GetStaticPaths } from 'next';
 import fs from 'fs';
 import path from 'path';
-import styles from '@/pages/[api]/WebApiDetailPage.module.css';
+import styles from '@/pages/[api]/WebApiDetail.module.css';
 import { WEB_API_LIST } from '@/constants/home';
 import Timer from '@/components/webApis/Timer';
 
