@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   width: 100%;
+  height: var(--gnb-height);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -61,7 +62,6 @@
 
       &.active {
         color: #667eea;
-        font-weight: 600;
         background-color: rgba(102, 126, 234, 0.15);
       }
     }
