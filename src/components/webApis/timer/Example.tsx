@@ -1,5 +1,3 @@
-import ExampleLayout from '@/components/layouts/ExampleLayout';
-import styles from '@/styles/components/timer.module.css';
 import type { Dot } from '@/types/timer';
 import { useCallback, useEffect, useRef } from 'react';
 
@@ -80,38 +78,36 @@ const Example = () => {
   }, [lines.length]);
 
   return (
-    <ExampleLayout>
-      <div className={styles.container}>
-        <svg viewBox="0 0 550 400" width="550" height="400">
-          {dots.map((dot, index) => {
-            const { x, y, letter } = dot;
-            return (
-              <g key={index}>
-                <circle cx={x} cy={y} r="2" />
-                <text x={x} y={y + 30} textAnchor="middle">
-                  {letter}
-                </text>
-              </g>
-            );
-          })}
-          {lines.map((line, index) => {
-            const { startX, startY, endX, endY } = line;
-            return (
-              <line
-                ref={setLineRef(index)}
-                key={index}
-                x1={startX}
-                y1={startY}
-                x2={endX}
-                y2={endY}
-                stroke="transparent"
-                strokeWidth="1"
-              />
-            );
-          })}
-        </svg>
-      </div>
-    </ExampleLayout>
+    <div>
+      <svg viewBox="0 0 550 400" width="550" height="400">
+        {dots.map((dot, index) => {
+          const { x, y, letter } = dot;
+          return (
+            <g key={index}>
+              <circle cx={x} cy={y} r="2" />
+              <text x={x} y={y + 30} textAnchor="middle">
+                {letter}
+              </text>
+            </g>
+          );
+        })}
+        {lines.map((line, index) => {
+          const { startX, startY, endX, endY } = line;
+          return (
+            <line
+              ref={setLineRef(index)}
+              key={index}
+              x1={startX}
+              y1={startY}
+              x2={endX}
+              y2={endY}
+              stroke="transparent"
+              strokeWidth="1"
+            />
+          );
+        })}
+      </svg>
+    </div>
   );
 };
 
