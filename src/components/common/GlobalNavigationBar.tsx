@@ -1,8 +1,8 @@
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import styles from "@/styles/components/globalNavigationBar.module.css";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import styles from '@/components/common/GlobalNavigationBar.module.css';
 
 const GlobalNavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,13 +13,13 @@ const GlobalNavigationBar = () => {
   };
 
   const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Introduction", href: "/intro" },
+    { label: 'Home', href: '/' },
+    { label: 'Introduction', href: '/intro' },
   ];
 
   const isActive = (path: string) => {
-    if (path === "/") {
-      return router.pathname === "/";
+    if (path === '/') {
+      return router.pathname === '/';
     }
     return router.pathname.startsWith(path);
   };
@@ -35,7 +35,7 @@ const GlobalNavigationBar = () => {
         <ul className={styles.navMenu}>
           {navItems.map((item) => (
             <li key={item.href} className={styles.navItem}>
-              <Link href={item.href} className={`${styles.navLink} ${isActive(item.href) ? styles.active : ""}`}>
+              <Link href={item.href} className={`${styles.navLink} ${isActive(item.href) ? styles.active : ''}`}>
                 {item.label}
               </Link>
             </li>

@@ -1,5 +1,5 @@
-import styles from "@/styles/components/loading.module.css";
-import { cn } from "@/utils/styles";
+import styles from '@/components/common/Loading.module.css';
+import { cn } from '@/utils/styles';
 
 interface Props {
   overrideStyle?: string;
