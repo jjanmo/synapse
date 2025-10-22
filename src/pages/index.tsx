@@ -1,4 +1,3 @@
-import GlobalNavigationBar from '@/components/common/GlobalNavigationBar';
 import { WEB_API_LIST } from '@/constants/home';
 import Link from 'next/link';
 

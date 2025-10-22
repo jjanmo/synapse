@@ -2,10 +2,9 @@ import { useState } from 'react';
 import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
-import WebApiModal from '@/components/documents/WebApiModal';
 import Title from '@/components/documents/Title';
 import styles from '@/pages/mdn-documents.module.css';
-import GlobalNavigationBar from '@/components/common/GlobalNavigationBar';
+import ApiListModal from '@/components/documents/ApiListModal';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 
@@ -45,8 +44,8 @@ const Documents = () => {
         </ul>
       </div>
       {groupedWebApis && selectedWebApiKey && (
-        <WebApiModal
-          webApiList={groupedWebApis[selectedWebApiKey]}
+        <ApiListModal
+          apiList={groupedWebApis[selectedWebApiKey]}
           isOpen={!!selectedWebApiKey}
           title={selectedWebApiKey}
           onCloseModal={handleCloseModal}

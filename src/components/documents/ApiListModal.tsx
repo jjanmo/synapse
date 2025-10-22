@@ -1,27 +1,26 @@
-import type { ScrapedWebApiItem } from "@/types/webapis";
-import { useEffect, useRef } from "react";
-import styles from "@/styles/components/modal.module.css";
-import { File, X } from "lucide-react";
-import Link from "next/link";
-import type { Nullable } from "@/types/common";
+import type { ScrapedWebApiItem } from '@/types/webapis';
+import { useEffect, useRef } from 'react';
+import { File, X } from 'lucide-react';
+import Link from 'next/link';
+import type { Nullable } from '@/types/common';
+import styles from '@/components/documents/ApiListModal.module.css';
 
 interface Props {
   title: string;
-  webApiList: ScrapedWebApiItem[];
+  apiList: ScrapedWebApiItem[];
   isOpen: boolean;
   onCloseModal: VoidFunction;
-  /** default: true */
   closeOnOverlayClick?: boolean;
 }
 
-const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }: Props) => {
+const ApiListModal = ({ apiList, isOpen, title, onCloseModal, closeOnOverlayClick = true }: Props) => {
   const dialogRef = useRef<Nullable<HTMLDialogElement>>(null);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     };
   }, []);
 
@@ -47,9 +46,9 @@ const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayCl
       event.preventDefault();
       onCloseModal();
     };
-    dialog.addEventListener("cancel", handleCancel);
+    dialog.addEventListener('cancel', handleCancel);
     return () => {
-      dialog.removeEventListener("cancel", handleCancel);
+      dialog.removeEventListener('cancel', handleCancel);
     };
   }, [onCloseModal]);
 
@@ -72,16 +71,16 @@ const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayCl
       }
     };
 
-    dialog.addEventListener("click", handleOverlayClick);
+    dialog.addEventListener('click', handleOverlayClick);
     return () => {
-      dialog.removeEventListener("click", handleOverlayClick);
+      dialog.removeEventListener('click', handleOverlayClick);
     };
   }, [onCloseModal, closeOnOverlayClick]);
 
   return (
-    <dialog ref={dialogRef} aria-labelledby="webapi-modal-title" className={styles.dialog}>
+    <dialog ref={dialogRef} aria-labelledby="api-modal-title" className={styles.dialog}>
       <header className={styles.header}>
-        <h3 id="webapi-modal-title" className={styles.title}>
+        <h3 id="api-modal-title" className={styles.title}>
           {title}
         </h3>
         <button type="button" onClick={onCloseModal} className={styles.closeButton}>
@@ -89,7 +88,7 @@ const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayCl
         </button>
       </header>
       <ul>
-        {webApiList.map(({ id, title, url }) => {
+        {apiList.map(({ id, title, url }) => {
           return (
             <li key={id} className={styles.item}>
               <div className={styles.title}>{title}</div>
@@ -97,10 +96,6 @@ const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayCl
                 <Link title="MDN" href={`https://developer.mozilla.org${url}`} target="_blank">
                   <File size={16} />
                 </Link>
-                {/* @TODO: 나중에 추가 */}
-                {/* <Link href={`/web-apis/${id}`}>
-                  <ChevronRight size={24} />
-                </Link> */}
               </div>
             </li>
           );
@@ -110,4 +105,4 @@ const WebApiModal = ({ webApiList, isOpen, title, onCloseModal, closeOnOverlayCl
   );
 };
 
-export default WebApiModal;
+export default ApiListModal;
