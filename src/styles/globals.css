@@ -137,3 +137,8 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+main {
+  width: 100%;
+  height: calc(100vh - var(--gnb-height));
+}
