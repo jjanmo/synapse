@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '@/components/common/GlobalNavigationBar.module.css';
 
 const GlobalNavigationBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Introduction', href: '/intro' },
+    { label: 'Documents', href: '/documents' },
   ];
 
   const isActive = (path: string) => {
