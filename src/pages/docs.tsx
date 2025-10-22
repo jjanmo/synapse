@@ -3,8 +3,8 @@ import type { Nullable } from '@/types/common';
 import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
 import Title from '@/components/documents/Title';
-import styles from '@/pages/mdn-documents.module.css';
 import ApiListModal from '@/components/documents/ApiListModal';
+import styles from '@/pages/docs.module.css';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 

@@ -8,7 +8,7 @@ const GlobalNavigationBar = () => {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'MDN Documents', href: '/mdn-documents' },
+    { label: 'MDN Documents', href: '/docs' },
   ];
 
   const isActive = (path: string) => {
