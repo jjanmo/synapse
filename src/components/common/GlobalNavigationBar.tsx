@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '@/components/common/GlobalNavigationBar.module.css';
 
+const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
+  { label: 'MDN Documents', href: '/docs' },
+];
+
 const GlobalNavigationBar = () => {
   const router = useRouter();
-
-  const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'MDN Documents', href: '/docs' },
-  ];
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -27,7 +27,7 @@ const GlobalNavigationBar = () => {
         </Link>
 
         <ul className={styles.navMenu}>
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <li key={item.href} className={styles.navItem}>
               <Link href={item.href} className={`${styles.navLink} ${isActive(item.href) ? styles.active : ''}`}>
                 {item.label}

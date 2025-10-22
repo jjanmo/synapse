@@ -4,7 +4,7 @@ import { useWebApiListQuery } from '@/queries/scrape';
 import Loading from '@/components/common/Loading';
 import Title from '@/components/documents/Title';
 import ApiListModal from '@/components/documents/ApiListModal';
-import styles from '@/pages/docs.module.css';
+import styles from '@/pages/Documents.module.css';
 
 const SCRAPE_URL = 'https://developer.mozilla.org/ko/docs/Web/API';
 
