@@ -1,4 +1,4 @@
-import { WEB_API_LIST } from '@/constants/home';
+import { WEB_API_LIST } from '@/constants';
 import Link from 'next/link';
 
 const Home = () => {
