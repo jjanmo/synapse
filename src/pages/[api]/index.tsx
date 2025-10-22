@@ -1,20 +1,16 @@
-import { useState } from 'react';
-import type { FC } from 'react';
 import type { GetStaticProps, GetStaticPaths } from 'next';
 import fs from 'fs';
 import path from 'path';
-import Example from '@/components/webApis/timer/Example';
-import Tabs from '@/components/common/Tabs';
-import MarkdownRenderer from '@/components/common/MarkdownRenderer';
-import styles from '@/styles/pages/webApis.module.css';
+import styles from '@/pages/[api]/WebApiDetailPage.module.css';
 import { WEB_API_LIST } from '@/constants/home';
+import Timer from '@/components/webApis/Timer';
 
 interface Props {
   markdownContent?: string;
 }
 
-const WebApiDetailPage = ({ markdownContent }: Props) => {
-  return <div className={styles.container}></div>;
+const WebApiDetail = ({ markdownContent }: Props) => {
+  return <div className={styles.container}>{markdownContent && <Timer markdownContent={markdownContent} />}</div>;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -49,4 +45,4 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   }
 };
 
-export default WebApiDetailPage;
+export default WebApiDetail;

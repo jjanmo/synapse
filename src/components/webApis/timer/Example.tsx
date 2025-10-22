@@ -1,10 +1,10 @@
-import ExampleLayout from "@/components/common/ExampleLayout";
-import styles from "@/styles/components/timer.module.css";
-import type { Dot } from "@/types/timer";
-import { useCallback, useEffect, useRef } from "react";
+import ExampleLayout from '@/components/layouts/ExampleLayout';
+import styles from '@/styles/components/timer.module.css';
+import type { Dot } from '@/types/timer';
+import { useCallback, useEffect, useRef } from 'react';
 
-const DOTS_TEXT = "ABCDEJIHGF";
-const LINE_ORDER = "ABCDEFGHIJ";
+const DOTS_TEXT = 'ABCDEJIHGF';
+const LINE_ORDER = 'ABCDEFGHIJ';
 
 const generateDotPositions = (): Dot[] => {
   const spacing = 120;
@@ -67,7 +67,7 @@ const Example = () => {
     lineRefs.current.forEach((line, index) => {
       if (line) {
         const intervalId = setTimeout(() => {
-          line.style.stroke = "black";
+          line.style.stroke = 'black';
         }, 1000 * index);
         intervalIds.current.push(intervalId);
       }
