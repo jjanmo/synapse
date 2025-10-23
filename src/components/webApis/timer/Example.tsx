@@ -1,23 +1,27 @@
 import type { Dot } from '@/types/timer';
 import { useEffect, useRef } from 'react';
+import styles from '@/components/webApis/Timer/Timer.module.css';
 
-// 선을 그릴 순서대로 점 정의
+// 직사각형 형태로 점 정의 (모든 선의 길이가 동일 = 100)
+// 캔버스 중앙(300, 150)에 배치
 const DOTS: Dot[] = [
-  { x: 50, y: 100, letter: 'A' },
-  { x: 170, y: 100, letter: 'B' },
-  { x: 290, y: 100, letter: 'C' },
-  { x: 410, y: 100, letter: 'D' },
-  { x: 530, y: 100, letter: 'E' },
-  { x: 530, y: 220, letter: 'J' },
-  { x: 410, y: 220, letter: 'I' },
-  { x: 290, y: 220, letter: 'H' },
-  { x: 170, y: 220, letter: 'G' },
-  { x: 50, y: 220, letter: 'F' },
+  { x: 100, y: 50, letter: 'A' },
+  { x: 200, y: 50, letter: 'B' },
+  { x: 300, y: 50, letter: 'C' },
+  { x: 400, y: 50, letter: 'D' },
+  { x: 500, y: 50, letter: 'E' },
+  { x: 500, y: 150, letter: 'J' },
+  { x: 400, y: 150, letter: 'I' },
+  { x: 300, y: 150, letter: 'H' },
+  { x: 200, y: 150, letter: 'G' },
+  { x: 100, y: 150, letter: 'F' },
 ];
 
 const Example = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
+  // TODO: 실제 그려지는 시간 측정하기!
+  const timeLogRef = useRef<number[]>([10, 20, 30, 40, 50, 60, 70, 80, 90, 100]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,7 +74,18 @@ const Example = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} width="550" height="400" />;
+  return (
+    <>
+      <canvas ref={canvasRef} width="600" height="200" />
+      <ul className={styles.timeLogList}>
+        {timeLogRef.current.map((time, index) => (
+          <li key={index}>
+            {index + 1} : {time}초{' '}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 
 export default Example;
